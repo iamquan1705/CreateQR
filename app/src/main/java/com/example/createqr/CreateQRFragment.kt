@@ -19,7 +19,7 @@ import com.google.zxing.common.BitMatrix
 
 class CreateQRFragment : Fragment() {
     private lateinit var binding: FragmentCreateQrBinding
-    private lateinit var colorPiker : ColorDialog
+    private lateinit var colorPiker: ColorDialog
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -31,12 +31,13 @@ class CreateQRFragment : Fragment() {
             //onClick()
         }
         binding.btnColor.setOnClickListener {
-            colorPiker = ColorDialog(requireContext(),onClickChoose = onClickChoose())
+            colorPiker = ColorDialog(requireContext(), onClickChoose = onClickChoose())
             colorPiker.show()
         }
 
         return binding.root
     }
+
     private fun onClickChoose(): (Int) -> Unit = { color ->
         val r = Color.red(color)
         val g = Color.green(color)
@@ -44,11 +45,10 @@ class CreateQRFragment : Fragment() {
         onClick(color)
     }
 
-    private fun onClick(color : Int) {
-        var bitmap  = encode(binding.edtText.text.toString(),400,400,color,-16711936)
+    private fun onClick(color: Int) {
+        var bitmap = encode(binding.edtText.text.toString(), 400, 400, color, -16711936)
         Glide.with(requireActivity()).load(bitmap).into(binding.imgQR)
     }
-
 
 
     private fun encode(

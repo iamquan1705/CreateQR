@@ -10,6 +10,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        supportFragmentManager.beginTransaction().add(R.id.frFragment, CreateQRFragment()).commit()
+        supportFragmentManager.beginTransaction().add(R.id.frFragment, TaoQRFragment()).commit()
     }
 }
