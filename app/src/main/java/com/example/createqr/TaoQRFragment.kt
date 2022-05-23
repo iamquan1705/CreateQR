@@ -1,10 +1,15 @@
 package com.example.createqr
 
+import android.annotation.SuppressLint
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.GridLayout
+import android.widget.RadioGroup
+import android.widget.Toast
+import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.createqr.adapter.QRItemAdapter
@@ -25,23 +30,11 @@ class TaoQRFragment : Fragment() {
     }
 
     private fun initView() {
-        var adapter = QRItemAdapter(requireContext())
-        adapter.submit(listQRMODEL)
-        binding.rcQrCode.adapter = adapter
-        binding.rcQrCode.layoutManager = GridLayoutManager(requireContext(), 3)
-
+        var viewAdd = AddView(requireContext())
+        binding.llAddView.addView(viewAdd)
+        binding.btnClick.setOnClickListener {
+            binding.tvResult.text =  viewAdd.getResult()
+        }
     }
-
-    private var listQRMODEL = arrayListOf<QRITemRecycleView>(
-        QRITemRecycleView(TypeQR.PHONE, R.drawable.message_text),
-        QRITemRecycleView(TypeQR.EMAIL, R.drawable.color),
-        QRITemRecycleView(TypeQR.URL, R.drawable.message_text),
-        QRITemRecycleView(TypeQR.SMS, R.drawable.color),
-        QRITemRecycleView(TypeQR.CONTACT, R.drawable.message_text),
-        QRITemRecycleView(TypeQR.TEXT, R.drawable.color),
-        QRITemRecycleView(TypeQR.WIFI, R.drawable.message_text),
-        QRITemRecycleView(TypeQR.CALENDER, R.drawable.color),
-        QRITemRecycleView(TypeQR.LOCATION, R.drawable.message_text),
-    )
 
 }
