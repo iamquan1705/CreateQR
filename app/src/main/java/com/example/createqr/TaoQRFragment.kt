@@ -1,21 +1,14 @@
 package com.example.createqr
 
-import android.annotation.SuppressLint
-import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.GridLayout
-import android.widget.RadioGroup
-import android.widget.Toast
-import androidx.core.view.get
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
-import com.example.createqr.adapter.QRItemAdapter
 import com.example.createqr.databinding.FragmentTaoqrBinding
-import com.example.createqr.model.QRITemRecycleView
-import com.example.createqr.model.TypeQR
+
 
 class TaoQRFragment : Fragment() {
     private lateinit var binding: FragmentTaoqrBinding
@@ -33,8 +26,15 @@ class TaoQRFragment : Fragment() {
         var viewAdd = AddView(requireContext())
         binding.llAddView.addView(viewAdd)
         binding.btnClick.setOnClickListener {
-            binding.tvResult.text =  viewAdd.getResult()
+            binding.tvResult.text = viewAdd.getResult()
+        }
+
+        binding.btnClick.setOnLongClickListener {
+            val rotate: Animation = AnimationUtils.loadAnimation(requireContext(), R.anim.rotate)
+            it.startAnimation(rotate)
+            return@setOnLongClickListener true
         }
     }
+
 
 }
